@@ -1,0 +1,243 @@
+4226=
+{
+	name=
+	{
+		key="STAR_NAME_1_OF_1"
+		variables=
+		{
+			
+			{
+				key="NAME"
+				value=
+				{
+					key="Qeffoth"
+				}
+			}
+
+		}
+	}
+	planet_class="pc_g_star"
+	coordinate=
+	{
+		x=0
+		y=0
+		origin=382
+		randomized=no
+		visual_height=0.000000
+	}
+	orbit=0
+	planet_size=26
+	bombardment_damage=0
+	last_bombardment="0.01.01"
+	automated_development=no
+	kill_pop="0.01.01"
+	build_queue=8548
+	army_build_queue=8549
+	externally_owned_build_queues=
+	{
+		
+		{
+			key=4294967295					value=25089				}
+	}
+	planet_orbitals=
+	{
+	}
+	entity=0
+	deposits=
+	{
+		2722 
+	}
+	favorite_jobs=
+	{
+	}
+	stability=0
+	migration=0
+	crime=0
+	amenities=0
+	amenities_usage=0
+	free_amenities=0
+	free_housing=0
+	total_housing=0
+	housing_usage=0
+	employable_pops=0
+	num_sapient_pops=0
+	recalc_pops=yes
+	manual_designation_changed_date="0.01.01"
+	ascension_tier=0
+	auto_slots_taken=
+	{
+		no no no no no no no no no no no no 
+	}
+	last_auto_mod_index=0
+}
+1=
+{
+	name=
+	{
+		key="PLANET_NAME_FORMAT"
+		variables=
+		{
+			
+			{
+				key="PARENT"
+				value=
+				{
+					key="SPEC_Kelbrid_system"
+				}
+			}
+
+			{
+				key="NUMERAL"
+				value=
+				{
+					key="I"
+					literal=yes
+				}
+			}
+
+		}
+	}
+	planet_class="pc_molten"
+	coordinate=
+	{
+		x=49.809
+		y=-5.6935
+		origin=328
+		randomized=no
+		visual_height=0.000000
+	}
+	orbit=50
+	planet_size=25
+	bombardment_damage=0
+	last_bombardment="0.01.01"
+	automated_development=no
+	controller=0
+	kill_pop="0.01.01"
+	build_queue=2
+	army_build_queue=3
+	externally_owned_build_queues=
+	{
+		
+		{
+			key=4294967295					value=20864				}
+	}
+	planet_orbitals=
+	{
+	}
+	shipclass_orbital_station=368
+	flags=
+	{
+		starting_mining_target=62808000
+		starting_deposit=62808000
+	}
+	entity=1
+	prevent_anomaly=yes
+	deposits=
+	{
+		12 
+	}
+	favorite_jobs=
+	{
+	}
+	stability=0
+	migration=0
+	crime=0
+	amenities=0
+	amenities_usage=0
+	free_amenities=0
+	free_housing=0
+	total_housing=0
+	housing_usage=0
+	employable_pops=0
+	num_sapient_pops=0
+	recalc_pops=yes
+	manual_designation_changed_date="0.01.01"
+	ascension_tier=0
+	auto_slots_taken=
+	{
+		no no no no no no no no no no no no 
+	}
+	last_auto_mod_index=0
+}
+
+380=
+{
+	name=
+	{
+		key="PLANET_NAME_FORMAT"
+		variables=
+		{
+			
+			{
+				key="PARENT"
+				value=
+				{
+					key="Balawar"
+				}
+			}
+
+			{
+				key="NUMERAL"
+				value=
+				{
+					key="III"
+					literal=yes
+				}
+			}
+
+		}
+	}
+	planet_class="pc_gas_giant"
+	coordinate=
+	{
+		x=0.7995
+		y=130.5707
+		origin=592
+		randomized=no
+		visual_height=0.000000
+	}
+	orbit=130
+	planet_size=25
+	bombardment_damage=0
+	last_bombardment="0.01.01"
+	automated_development=no
+	moons=
+	{
+		381 
+	}
+	kill_pop="0.01.01"
+	build_queue=808
+	army_build_queue=809
+	externally_owned_build_queues=
+	{
+		
+		{
+			key=4294967295					value=21243				}
+	}
+	planet_orbitals=
+	{
+	}
+	entity=2
+	favorite_jobs=
+	{
+	}
+	stability=0
+	migration=0
+	crime=0
+	amenities=0
+	amenities_usage=0
+	free_amenities=0
+	free_housing=0
+	total_housing=0
+	housing_usage=0
+	employable_pops=0
+	num_sapient_pops=0
+	recalc_pops=yes
+	manual_designation_changed_date="0.01.01"
+	ascension_tier=0
+	auto_slots_taken=
+	{
+		no no no no no no no no no no no no 
+	}
+	last_auto_mod_index=0
+}
