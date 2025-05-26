@@ -7,9 +7,7 @@ namespace StellarisNanotechHelper
     {
         private bool needsTranslation = false; // Flag to indicate if translation is needed
 
-        string[] namelist1 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\prescripted_countries_names_l_simp_chinese.yml").Split('\n');
-        string[] namelist2 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\random_names_l_simp_chinese.yml").Split('\n');
-        string[] namelist3 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\species_machine_names_l_simp_chinese.yml").Split('\n');
+        string[] namelist1, namelist2, namelist3;
 
         public Form1()
         {
@@ -44,6 +42,7 @@ namespace StellarisNanotechHelper
 
         private void search_button_Click(object sender, EventArgs e)
         {
+            output_box.Text = string.Empty; // Clear the output box before searching
             read_savedata();
         }
 
@@ -362,6 +361,11 @@ namespace StellarisNanotechHelper
             needsTranslation = true;
             search_button.Text = "¿ªÊ¼ËÑË÷";
             buttom_browse.Text = "ä¯ÀÀ";
+
+            namelist1 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\prescripted_countries_names_l_simp_chinese.yml").Split('\n');
+            namelist2 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\random_names_l_simp_chinese.yml").Split('\n');
+            namelist3 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\species_machine_names_l_simp_chinese.yml").Split('\n');
+
             return;
         }
     }
