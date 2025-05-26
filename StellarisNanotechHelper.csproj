@@ -8,4 +8,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="simp_chinese\**" />
+    <EmbeddedResource Remove="simp_chinese\**" />
+    <None Remove="simp_chinese\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="planet_list_v1.txt" />
+    <None Remove="纳米5525可选星系.txt" />
+  </ItemGroup>
+
 </Project>
