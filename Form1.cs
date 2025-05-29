@@ -75,25 +75,31 @@ namespace StellarisNanotechHelper
 
 
                 /* Read the file */
-                int line_number = 0;
+                int planet_size_line_number = 0;
                 string outputLine = string.Empty;
 
                 string[] lines = File.ReadAllText(savedataPath).Split('\n');
                 /* Search for plane_size, if plane_size>=25, show its planet_class*/
                 foreach (string line in lines)
                 {
-                    line_number++;
-                    if (line.Contains("planet_size"))
+                    planet_size_line_number++;
+                    if (line.StartsWith("\t\t\tplanet_size"))
                     {
                         int planet_size = int.Parse(line.Split('=')[1].Trim());
+
                         if (planet_size >= 25)
                         {
-                            /* search the first planet_class before it */
-                            for (int i = line_number; i >= 0; i--)
+                            string planet_name_key = string.Empty;
+                            string planet_class = string.Empty;
+                            string system_name = string.Empty;
+                            string numeral = string.Empty;
+
+                            for (int i = planet_size_line_number; i >= 0; i--)
                             {
-                                if (lines[i].Contains("planet_class"))
+                                /* search the first planet_class before it */
+                                if (lines[i].StartsWith("\t\t\tplanet_class"))
                                 {
-                                    string planet_class = lines[i].Split('=')[1].Trim();
+                                    planet_class = lines[i].Split('=')[1].Trim();
                                     /* check if planet_class is valid */
                                     if (planet_class.Contains("_star") || planet_class.Contains("_gas_giant") || planet_class.Contains("_black_hole"))
                                     {
@@ -101,55 +107,70 @@ namespace StellarisNanotechHelper
                                         break;
                                     }
                                     else { }
-
-                                    //output_box.Text += planet_class + " ";
-
-                                    /* search the first key="PARENT" before it and show its value */
-                                    string numeral = string.Empty;
-                                    string system_name = string.Empty;
-                                    for (int j = line_number; j >= 0; j--)
+                                }
+                                else { }
+                                /* planet_class is valid, search the planet name */
+                                if (lines[i].StartsWith("\t\t\tname="))
+                                {
+                                    /* search the first "key=" */
+                                    for (int j = i; j < planet_size_line_number; j++)
                                     {
-                                        if (lines[j].Contains("key=\"NUMERAL"))
+                                        if (lines[j].StartsWith("\t\t\t\tkey"))
+                                        {
+                                            planet_name_key = lines[j].Split('=')[1].Replace("\"", "");
+                                            switch (planet_name_key)
+                                            {
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                        }
+
+                                        if (lines[j].StartsWith("\t\t\t\t\t\tkey=\"PARENT\""))
+                                        {
+                                            system_name = lines[j + 3].Split('=')[1];
+                                        }
+                                        else { }
+                                        if (lines[j].StartsWith("\t\t\t\t\t\tkey=\"NUMERAL\""))
                                         {
                                             numeral = lines[j + 3].Split('=')[1];
                                         }
                                         else { }
-                                        if (lines[j].Contains("key=\"PARENT"))
-                                        {
-                                            system_name = lines[j + 3].Split('=')[1];
-                                            if (system_name.Contains("\"STAR_NAME_"))
-                                            {
-                                                system_name = lines[j + 11].Split('=')[1];
-                                            }
-                                            else { }
-
-                                            /* output system name, planet class and numeral */
-                                            planet_class = planet_class.Replace("\"", ""); // Remove quotes from planet_class
-                                            system_name = system_name.Replace("\"", ""); // Remove quotes from system_name
-                                            numeral = numeral.Replace("\"", ""); // Remove quotes from numeral
-                                            if (needsTranslation)
-                                            {
-                                                planet_class = translate_planet_class(planet_class);
-                                                system_name = translate_system_name(system_name);
-                                            }
-                                            else
-                                            {
-                                                planet_class = planet_class.Replace("pc_", "");
-                                            }
-                                            outputLine = planet_class + " " + system_name + " " + numeral + "\r\n";
-
-                                            output_box.Text += outputLine;
-                                            progressBar1.PerformStep();
-                                            //output_box.Text += lines[j + 3].Split('=')[1] + " ";
-                                            //output_box.Text += numeral + "\r\n";
-                                            break;
-                                        }
-                                        else { }
                                     }
 
+                                    if (planet_name_key == "PLANET_NAME_FORMAT")
+                                    {
+                                        /* output system name, planet class and numeral */
+                                        planet_class = planet_class.Replace("\"", ""); // Remove quotes from planet_class
+                                        system_name = system_name.Replace("\"", ""); // Remove quotes from system_name
+                                        numeral = numeral.Replace("\"", ""); // Remove quotes from numeral
+                                        if (needsTranslation)
+                                        {
+                                            planet_class = translate_planet_class(planet_class);
+                                            system_name = translate_system_name(system_name);
+                                        }
+                                        else
+                                        {
+                                            planet_class = planet_class.Replace("pc_", "");
+                                        }
+                                        outputLine = planet_class + " " + system_name + " " + numeral + "\r\n";
+                                        //outputLine = planet_size_line_number.ToString() + ": " + planet_class + " " + system_name + " " + numeral + "\r\n";
+                                    }
+                                    else
+                                    {
+                                        outputLine = "unknown " + planet_name_key + "\r\n";
+                                        //outputLine = planet_size_line_number.ToString() + ": unknown " + planet_name_key + "\r\n";
+                                    }
+
+
+                                    output_box.Text += outputLine;
+                                    progressBar1.PerformStep();
                                     break;
                                 }
                                 else { }
+
                             }
 
                         }
@@ -163,6 +184,7 @@ namespace StellarisNanotechHelper
             {
                 MessageBox.Show("Invalid file path");
             }
+             return;
         }
 
         private string translate_planet_class(string planet_class)
@@ -362,9 +384,9 @@ namespace StellarisNanotechHelper
             search_button.Text = "¿ªÊ¼ËÑË÷";
             buttom_browse.Text = "ä¯ÀÀ";
 
-            namelist1 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\prescripted_countries_names_l_simp_chinese.yml").Split('\n');
-            namelist2 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\random_names_l_simp_chinese.yml").Split('\n');
-            namelist3 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\species_machine_names_l_simp_chinese.yml").Split('\n');
+            namelist1 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\simp_chinese\\name_lists\\prescripted_countries_names_l_simp_chinese.yml").Split('\n');
+            namelist2 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\simp_chinese\\random_names\\random_names_l_simp_chinese.yml").Split('\n');
+            namelist3 = File.ReadAllText($"{System.Environment.CurrentDirectory}" + "\\simp_chinese\\name_lists\\species_machine_names_l_simp_chinese.yml").Split('\n');
 
             return;
         }
